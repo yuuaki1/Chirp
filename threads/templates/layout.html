@@ -1,0 +1,59 @@
+{% load static  tailwind_tags%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Threads
+        {% endblock %}
+    </title>
+    {% tailwind_css %}
+</head>
+<body class="bg-[#181414] text-white items-center justify-center flex flex-col">
+    
+
+<nav class="w-screen flex flex-row justify-between sticky top-0 z-30 bg-[#181414]">
+    <div class=" flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="{% url 'thread_list' %}" class="flex items-center space-x-3 rtl:space-x-reverse ml-12">
+        <img src="{% static 'threads.svg' %}" class="h-8 w-8 hover:h-10 hover:w-10 duration-300 invert" alt="Threads Logo" />
+      </a>
+    </div>
+    <div class=" w-screen px-4 flex flex-row items-center justify-center">
+      <div class=" mt-2 rounded-md p-5 hover:bg-[#2b2b2b]">
+        <a href="{% url 'thread_list' %}" class="group"><img src = "{% static "home.svg" %}"  class="group-active:invert  invert-[60%] h-6 w-6"/></a>
+      </div>
+      <div class=" mt-2 rounded-md p-5 hover:bg-[#2b2b2b]">
+        <a href="#" ><img src = "{% static "search.svg" %}"  class="h-6 w-6 invert-[60%] hover:invert-[90%]"/></a>
+      </div>
+      <div class=" mt-2 rounded-md p-5 hover:bg-[#2b2b2b]">
+        <a href="{% url 'thread_create' %}" ><img src = "{% static "create.svg" %}"  class="h-6 w-6 invert-[60%] hover:invert-[90%]"/></a>
+      </div>
+      <div class=" mt-2 rounded-md p-5 hover:bg-[#2b2b2b]">
+        <a href="#" ><img src = "{% static "heart.svg" %}"  class="h-6 w-6 invert-[60%] hover:invert-[90%]"/></a>
+      </div>
+      <div class=" mt-2 rounded-md p-5 hover:bg-[#2b2b2b]">
+        <a href="#" ><img src = "{% static "person.svg" %}"  class="h-6 w-6 invert-[60%] hover:invert-[90%]"/></a>
+      </div>
+          
+      </div>
+      <div>
+        {% if user.is_authenticated %}
+          <form method = "post" action = {% url 'logout' %}>
+            {% csrf_token %}
+            <button type = "submit" class="bg-white text-[#181414] py-2 px-5 rounded-md mt-4 mr-12">Logout</button></form>
+          </form>
+          {% else %}
+          <a href = "{% url 'login' %}" class="bg-white text-[#181414] py-2 px-5 rounded-md mt-4 mr-12">Login</a>
+          {% endif %}
+      </div>
+  </nav>
+  
+    <div class="container">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+</body>
+</html>

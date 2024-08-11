@@ -1,0 +1,53 @@
+{% load static  tailwind_tags%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Threads
+        {% endblock %}
+    </title>
+    <style>
+        #bg {
+            background-image: url("{% static 'login.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-attachment: fixed;
+        }
+        .username{
+            background-color: black;
+        }
+    </style>
+    {% tailwind_css %}
+</head>
+<body id = "bg" class="bg-[#181414] text-white flex items-center justify-center">
+    {% load widget_tweaks %}
+    <div class="my-96">
+        {% block content %}
+        <div class="items-center">
+            <form method = "post">
+                {% csrf_token %}
+                <div class="form-group">
+                   {% render_field form.username type="text" class="bg-[#201c1c] my-1 py-4 px-24 rounded-md" id="exampleInputUsername" placeholder="Username" %}
+                 </div>
+                 <div class="form-group">
+                   {% render_field form.email type="text" class="bg-[#201c1c] my-1 py-4 px-24 rounded-md" id="exampleInput" placeholder="Email" %}
+                 </div>
+                 <div class="form-group">
+                   {% render_field form.password1 type="password" class="bg-[#201c1c] my-1 py-4 px-24 rounded-md" id="exampleInputPassword" placeholder="Password" %}
+                 </div>
+                 <div class="form-group">
+                   {% render_field form.password2 type="password" class="bg-[#201c1c] my-1 py-4 px-24 rounded-md" id="exampleInputPassword1" placeholder="Confirm Password" %}
+                 </div>
+                 <button class="rounded-md text-center bg-white text-gray-500 my-10 py-4 px-40" type = "submit">Register</button>
+            </form>
+
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+        {% endblock %}
+    </div>
+</body>
+</html>

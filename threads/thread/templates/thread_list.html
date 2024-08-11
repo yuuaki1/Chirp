@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Threads
+{% endblock %}
+ 
+{% block content %}
+
+
+<div class="space-x-3">
+    {% for thread in threads %}
+    <div class="">
+        <h5 class="text-white">{{ thread.user.username }}</h5>
+        <p class="bg-black text-white">{{ thread.text }}</p>
+        {% if thread.user == user %}
+        <a href="{% url 'thread_edit' thread.id %}" class="bg-black text-white">Edit</a>
+        <a href="{% url 'thread_delete' thread.id %}" class="bg-black text-white">Delete</a>
+        {% endif %}
+    </div>
+        <div class="">
+            {% if thread.photo %}
+            <img src = "{{thread.photo.url}}" class="" alt="..." />
+            {% endif %}
+            
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

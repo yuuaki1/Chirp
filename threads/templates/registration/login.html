@@ -1,0 +1,56 @@
+{% load static  tailwind_tags%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Threads
+        {% endblock %}
+    </title>
+    <style>
+        #bg {
+            background-image: url("{% static 'login.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-attachment: fixed;
+        }
+        .form-group input {
+            background-color: #201c1c !important;
+            padding-right: 165px !important;
+            margin-top: 5px !important;
+            margin-bottom: 5px !important;
+            border-radius: 0.375rem !important;
+            padding: 10px;
+        }
+        .form-group input:active, .form-group input:focus {
+            background-color: #201c1c !important;
+            padding-right: 165px !important;
+        }
+    </style>
+    {% tailwind_css %}
+</head>
+<body id = "bg" class="bg-[#181414] text-white flex items-center justify-center">
+    {% load widget_tweaks%}
+    <div class="my-80">
+        {% block content %}
+        <div class="items-center justify-center">
+            <h2 class="text-xl font-bold px-20 pb-5">Login to Threads</h2>
+            <form method = "post"">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group">
+                   {{field}}
+                </div>
+                 {% endfor %}
+                <button class="rounded-md text-center bg-white text-gray-500 my-10 py-4 px-40" type = "submit">Login</button>
+            </form>
+
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+        {% endblock %}
+    </div>
+</body>
+</html>

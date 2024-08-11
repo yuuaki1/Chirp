@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+ 
+{% block content %}
+{% load widget_tweaks %}
+<div class="flex flex-col items-center justify-center">
+
+<h1 class="text-2xl font-bold font-sans mt-6">{%if form.instance.pk %}Edit Thread {%else%} New Thread {% endif %}</h1>
+<h2>Post as {{user.username}}</h2>
+<form method="post" enctype="multipart/form-data" class="text-black">
+    <div class="flex flex-col space-y-4 form-group">
+        {% csrf_token %}
+        <div class="form-group">
+            {% render_field form.text type="text" class="text-white bg-[#201c1c] my-1 py-4 px-24 rounded-md" id="exampleInputPassword" placeholder="Start your thread..." %}
+        </div>
+        <div class="form-group">
+            {% render_field form.photo type="file" class="text-white bg-[#181414] my-1 py-4 px-24 rounded-md justify-between" id="exampleInputPassword" placeholder="Password" %}
+          </div>
+    </div>
+    <button type="submit" class="bg-white my-6 rounded-md px-60 py-4">Post</button>
+</form>
+</div>
+
+{% endblock content %}

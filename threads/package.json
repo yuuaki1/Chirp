@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "get-bin-path": "^11.0.0"
+  }
+}
