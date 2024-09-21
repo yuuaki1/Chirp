@@ -1,4 +1,4 @@
-Social Media App
+# Chirp
 A simple social media platform built with Django and Django REST Framework (DRF), allowing users to create accounts, post content, follow others, and interact with posts via likes and comments.
 
 Features
